@@ -8,6 +8,7 @@ public class Carcontroller : MonoBehaviour
     public float turnSpeed = 50f;
     public float horizontalInput;
     public float verticalInput;
+    public int contador = 0;
 
 
     void Update()
@@ -29,6 +30,14 @@ public class Carcontroller : MonoBehaviour
         if (other.gameObject.name.Contains("coin"))
         {
             Destroy(other.gameObject);
+            contador++; //incrementa a uno al atropellar
+            Debug.Log($"Llevas {contador} zombis atropellados.");
+        }
+
+        if (contador == 31)
+        {
+            Debug.Log($"Enhorabuena has echo una masacre");
+            Time.timeScale = 0;
         }
     }
 
