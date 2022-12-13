@@ -9,6 +9,7 @@ public class Carcontroller : MonoBehaviour
     public float horizontalInput;
     public float verticalInput;
     public int contador = 0;
+    public Vector3 initialpos = new Vector3(6035, 1, -3388);
 
 
     void Update()
@@ -32,12 +33,18 @@ public class Carcontroller : MonoBehaviour
             Destroy(other.gameObject);
             contador++; //incrementa a uno al atropellar
             Debug.Log($"Llevas {contador} zombis atropellados.");
+           
+            if (contador >= 31)
+            {
+                Debug.Log($"Enhorabuena has echo una masacre");
+                Time.timeScale = 0;
+            }
         }
 
-        if (contador == 31)
+        if (other.gameObject.name.Contains("pinchos"))
         {
-            Debug.Log($"Enhorabuena has echo una masacre");
-            Time.timeScale = 0;
+            transform.position = initialpos;
+            transform.rotation = Quaternion.identity;
         }
     }
 
